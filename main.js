@@ -191,11 +191,11 @@ if (contactForm) {
     submitBtn.textContent = originalText;
     /* --- End simulation --- */
 
-    
+  
     // --- Formspree (uncomment when ready) ---
-    try {
+   try {
   const response = await fetch(
-    "https://formspree.io/f/mzeeldwb",
+    "https://formspree.io/f/maeegqaz",
     {
       method: "POST",
       headers: {
