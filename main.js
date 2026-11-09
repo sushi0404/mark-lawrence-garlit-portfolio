@@ -191,7 +191,7 @@ if (contactForm) {
     submitBtn.textContent = originalText;
     /* --- End simulation --- */
 
-    
+   /* 
     // --- Formspree (uncomment when ready) ---
     try {
   const response = await fetch(
@@ -236,7 +236,7 @@ if (contactForm) {
   submitBtn.textContent = originalText;
 }
     // --- End Formspree ---
-    
+    */
   });
 }
 
