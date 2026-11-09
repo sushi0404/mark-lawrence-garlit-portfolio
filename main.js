@@ -191,10 +191,10 @@ if (contactForm) {
     submitBtn.textContent = originalText;
     /* --- End simulation --- */
 
-    /*
+    
     // --- Formspree (uncomment when ready) ---
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch('https://formspree.io/f/maeegqaz', {
         method: 'POST',
         headers: { 'Accept': 'application/json' },
         body: new FormData(contactForm)
@@ -213,7 +213,7 @@ if (contactForm) {
       submitBtn.textContent = originalText;
     }
     // --- End Formspree ---
-    */
+    
   });
 }
 
