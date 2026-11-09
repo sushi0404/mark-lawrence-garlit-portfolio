@@ -220,7 +220,7 @@ if (contactForm) {
 
     const errorMessage = result.errors
       ? result.errors.map(error => error.message).join(", ")
-      : Submission failed (${response.status}).;
+      : `Submission failed (${response.status}).`;
 
     showFormFeedback(errorMessage, "error");
   }
