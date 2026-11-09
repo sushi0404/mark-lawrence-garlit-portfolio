@@ -193,15 +193,17 @@ if (contactForm) {
 
   
     // --- Formspree (uncomment when ready) ---
-   try {
+   const formData = new FormData(contactForm);
+
+try {
   const response = await fetch(
     "https://formspree.io/f/mzeeldwb",
     {
       method: "POST",
+      body: formData,
       headers: {
-        Accept: "application/json",
-      },
-      body: new FormData(contactForm),
+        Accept: "application/json"
+      }
     }
   );
 
@@ -209,28 +211,30 @@ if (contactForm) {
 
   if (response.ok) {
     showFormFeedback(
-      "✅ Message sent! I'll get back to you within 24 hours.",
+      "Message sent successfully!",
       "success"
     );
 
     contactForm.reset();
   } else {
-    // Show the actual error returned by Formspree
     console.error("Formspree error:", result);
 
-    const errorMessage = result.errors
-      ? result.errors.map(error => error.message).join(", ")
-      : `Submission failed (${response.status}).`;
-
-    showFormFeedback(errorMessage, "error");
+    showFormFeedback(
+      result.errors
+        ? result.errors.map(error => error.message).join(", ")
+        : "Something went wrong. Please try again.",
+      "error"
+    );
   }
+
 } catch (error) {
-  console.error("Network error:", error);
+  console.error(error);
 
   showFormFeedback(
-    "Network error. Please check your connection and try again.",
+    "Network error. Please try again.",
     "error"
   );
+
 } finally {
   submitBtn.disabled = false;
   submitBtn.textContent = originalText;
