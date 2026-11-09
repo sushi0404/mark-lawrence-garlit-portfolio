@@ -194,24 +194,47 @@ if (contactForm) {
     
     // --- Formspree (uncomment when ready) ---
     try {
-      const response = await fetch('https://formspree.io/f/maeegqaz', {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(contactForm)
-      });
-
-      if (response.ok) {
-        showFormFeedback('✅ Message sent! I\'ll get back to you within 24 hours.', 'success');
-        contactForm.reset();
-      } else {
-        showFormFeedback('Something went wrong. Please try emailing me directly.', 'error');
-      }
-    } catch {
-      showFormFeedback('Network error. Please try emailing me directly.', 'error');
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
+  const response = await fetch(
+    "https://formspree.io/f/maeegqaz",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: new FormData(contactForm),
     }
+  );
+
+  const result = await response.json();
+
+  if (response.ok) {
+    showFormFeedback(
+      "✅ Message sent! I'll get back to you within 24 hours.",
+      "success"
+    );
+
+    contactForm.reset();
+  } else {
+    // Show the actual error returned by Formspree
+    console.error("Formspree error:", result);
+
+    const errorMessage = result.errors
+      ? result.errors.map(error => error.message).join(", ")
+      : Submission failed (${response.status}).;
+
+    showFormFeedback(errorMessage, "error");
+  }
+} catch (error) {
+  console.error("Network error:", error);
+
+  showFormFeedback(
+    "Network error. Please check your connection and try again.",
+    "error"
+  );
+} finally {
+  submitBtn.disabled = false;
+  submitBtn.textContent = originalText;
+}
     // --- End Formspree ---
     
   });
