@@ -184,11 +184,13 @@ if (contactForm) {
      */
 
     /* --- Simulation (remove when using Formspree) --- */
+     /*
     await simulateDelay(1200);
     showFormFeedback('✅ Message sent! I\'ll get back to you within 24 hours.', 'success');
     contactForm.reset();
     submitBtn.disabled = false;
     submitBtn.textContent = originalText;
+    */
     /* --- End simulation --- */
 
   
