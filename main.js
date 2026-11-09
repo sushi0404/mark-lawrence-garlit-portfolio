@@ -195,7 +195,7 @@ if (contactForm) {
     // --- Formspree (uncomment when ready) ---
    try {
   const response = await fetch(
-    "https://formspree.io/f/maeegqaz",
+    "https://formspree.io/f/mzeeldwb",
     {
       method: "POST",
       headers: {
